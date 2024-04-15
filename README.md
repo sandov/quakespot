@@ -20,7 +20,9 @@ Iniciamos el servidor que va a servir nuestra API:
 
 Así, la API queda disponible en `localhost:3000/`.
 
-Por ejemplo, para acceder a la lista de features:
+## Usar API:
+
+Para acceder a la lista de features:
 
 `http://127.0.0.1:3000/api/features`
 
