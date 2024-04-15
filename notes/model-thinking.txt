@@ -84,5 +84,6 @@ bin/rails generate migration add_title_to_features title:string
     coord_long
     cood_lat
 
+third try/rebuild:
 
 bin/rails generate scaffold Feature external_id:string magnitude:decimal place:string time:string tsunami:boolean mag_type:string title:string coord_long:decimal coord_lat:decimal external_url:string

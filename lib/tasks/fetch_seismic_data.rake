@@ -26,7 +26,7 @@ task fetch_seismic_data: :environment do
   # No need for a nested geometry object/Hash. Flat Hash is better.
   filtered_features = features.map do |item|
   {
-    "extern_id" => item["id"],
+    "external_id" => item["id"],
     "magnitude" => item["properties"]["mag"],
     "place" => item["properties"]["place"],
     "time" => item["properties"]["time"],
