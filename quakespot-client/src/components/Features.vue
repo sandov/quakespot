@@ -50,15 +50,20 @@
 
 import { ref } from 'vue'
 
+const page = ref('1')
+const per_page = ref('10')
+
 const API_URL = "http://localhost:3000/api/features"
 const earthquakeData = ref([])
 
 const getFeatures = async() => {
 
+    console.log(page.value)
+    console.log(per_page.value)
 
     const queryParams = new URLSearchParams({
-        page: '1',
-        per_page: '100',
+        page: page.value,
+        per_page: per_page.value,
     })
 
     const res = await fetch(API_URL + "?" + queryParams, {
