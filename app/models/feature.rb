@@ -1,5 +1,5 @@
 class Feature < ApplicationRecord
-    validates_uniqueness_of :extern_id
+    validates_uniqueness_of :external_id
 
     validates :title, presence: true
     validates :external_url, presence: true
