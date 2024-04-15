@@ -80,6 +80,6 @@ bin/rails generate migration add_title_to_features title:string
     external_url
     tsunami
     mag_type
-    p_title
+    title
     coord_long
     cood_lat
