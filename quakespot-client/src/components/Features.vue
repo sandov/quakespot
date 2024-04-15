@@ -1,0 +1,79 @@
+<template>
+
+    <div>
+        <h1>
+            Consultar eventos sísmicos
+        </h1>
+        <form>
+            <label for="page">Página:</label>
+            <input type="number" v-model="page">
+            <br>
+            <label for="per_page">N° de elementos por página: </label>
+            <input type="number" v-model="per_page" >
+            <br>
+            <button type="button" @click="getFeatures">Consultar</button>
+        </form>
+        <div id="results">
+            <div v-show="earthquakeData.length > 0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Lugar</th>
+                            <th>Fecha (zona horaria de usuario)</th>
+                            <th>Magnitud</th>
+                            <th>Tipo de Magnitud</th>
+                            <th>id externa</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="feature in earthquakeData">
+                            <td>{{ feature.id }}</td>
+                            <td>{{ feature.attributes.place }}</td>
+                            <td>{{ new Date(parseInt(feature.attributes.time)).toLocaleString() }}</td>
+                            <td>{{ feature.attributes.magnitude }}</td>
+                            <td>{{ feature.attributes.mag_type }}</td>
+                            <td>{{ feature.attributes.external_id }}</td>
+                            <td>{{ feature.attributes.links.external_url }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<script setup>
+
+import { ref } from 'vue'
+
+const API_URL = "http://localhost:3000/api/features"
+const earthquakeData = ref([])
+
+const getFeatures = async() => {
+
+
+    const queryParams = new URLSearchParams({
+        page: '1',
+        per_page: '100',
+    })
+
+    const res = await fetch(API_URL + "?" + queryParams, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    const data = await res.json()
+    earthquakeData.value = data.data
+}
+
+</script>
+
+<style scoped>
+
+</style>
