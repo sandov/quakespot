@@ -1,0 +1,85 @@
+DESIRED OUTPUT:
+
+{
+  "data": [
+    {
+      "id": 34,
+      "type": "feature",
+      "attributes": {
+        "external_id": "String",
+        "magnitude": 12.2,
+        "place": "String",
+        "time": "String",
+        "tsunami": true,
+        "mag_type": "String",
+        "title": "String",
+        "coordinates": {
+          "longitude": 21.2,
+          "latitude": 21.2
+        }
+      },
+      "links": {
+        "external_url": "String"
+      }
+    }
+  ],
+  "pagination": {
+    "current_page": 2,
+    "total": 2,
+    "per_page": 2
+  }
+}
+
+FILTERED FEATURE HASH:
+
+{
+  "id" => item["id"],
+  "properties" => {
+    "mag" => item["properties"]["mag"],
+    "place" => item["properties"]["place"],
+    "time" => item["properties"]["time"],
+    "url" => item["properties"]["url"],
+    "tsunami" => item["properties"]["tsunami"],
+    "magType" => item["properties"]["magType"],
+    "title" => item["properties"]["title"]
+  },
+  "geometry" => {
+    "coordinates" => item["geometry"]["coordinates"][0..1]
+  }
+}
+
+model:
+
+Feature 
+
+    external_id # Feature hash's 'id' attribute, as obtained from USGS. Used for deduplication
+    p_mag
+    p_place
+    p_time
+    p_url
+    p_tsunami
+    p_magType
+    p_title
+    gc_longitude
+    gc_latitude
+
+
+First try:
+
+bin/rails generate model Feature extern_id:string magnitude:decimal place:string time:string tsunami:boolean mag_type:string coord_long:decimal coord_lat:decimal external_url:string
+
+olvidé el title.
+
+second try:
+bin/rails generate migration add_title_to_features title:string
+
+    extern_id # Feature hash's 'id' attribute, as obtained from USGS. Used for deduplication
+    magnitude
+    place
+    time
+    external_url
+    tsunami
+    mag_type
+    p_title
+    coord_long
+    cood_lat
