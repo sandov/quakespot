@@ -11,6 +11,32 @@
             <label for="per_page">N° de elementos por página: </label>
             <input type="number" v-model="per_page" >
             <br>
+
+            <label for="md">md</label>            
+            <input type="checkbox" v-model="md">
+
+            <label for="ml">ml</label>            
+            <input type="checkbox" v-model="ml">
+
+            <label for="ms">ms</label>            
+            <input type="checkbox" v-model="ms">
+
+            <label for="mw">mw</label>            
+            <input type="checkbox" v-model="mw">
+
+            <label for="me">me</label>            
+            <input type="checkbox" v-model="me">
+
+            <label for="mi">mi</label>            
+            <input type="checkbox" v-model="mi">
+
+            <label for="mb">mb</label>            
+            <input type="checkbox" v-model="mb">
+
+            <label for="mlg">mlg</label>            
+            <input type="checkbox" v-model="mlg">
+
+            <br>
             <button type="button" @click="getFeatures">Consultar</button>
         </form>
         <div id="results">
@@ -51,19 +77,30 @@
 import { ref } from 'vue'
 
 const page = ref('1')
-const per_page = ref('10')
+const per_page = ref('20')
+
+const md = ref('true')
+const ms = ref('true')
+const ml = ref('true')
+const mw = ref('true')
+const me = ref('true')
+const mi = ref('true')
+const mb = ref('true')
+const mlg = ref('true')
 
 const API_URL = "http://localhost:3000/api/features"
 const earthquakeData = ref([])
 
 const getFeatures = async() => {
 
-    console.log(page.value)
-    console.log(per_page.value)
+    const mag_types = generateString(md.value, ml.value, ms.value, mw.value, me.value, mi.value, mb.value, mlg.value)
+
+    console.log(mag_types)
 
     const queryParams = new URLSearchParams({
         page: page.value,
         per_page: per_page.value,
+        mag_type: mag_types
     })
 
     const res = await fetch(API_URL + "?" + queryParams, {
@@ -77,8 +114,18 @@ const getFeatures = async() => {
     earthquakeData.value = data.data
 }
 
+function generateString(md, ml, ms, mw, me, mi, mb, mlg) {
+    const values = ["md", "ml", "ms", "mw", "me", "mi", "mb", "mlg"].filter(v => eval(v));
+    return values.join(",");
+}
+
 </script>
 
 <style scoped>
-
+input{
+    margin: .25em;
+}
+label{
+    margin-left: 1em;
+}
 </style>
