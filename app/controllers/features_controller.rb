@@ -1,8 +1,17 @@
 class FeaturesController < ApplicationController
   def index
-    @features = Feature.all
-    features_formatted = format_for_view(@features)
-    render json: features_formatted
+    page_param = params[:page]
+    per_page_param = params[:per_page]
+    mag_type_param = params[:mag_type]
+
+    if mag_type_param.present?
+      records = Feature.where(mag_type: mag_type_param)
+    else
+      records = Feature.all
+    end
+
+    records_formatted = format_for_view(records)
+    render json: records_formatted
   end
 
   private
