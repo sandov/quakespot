@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>QuakeSpot</h1>
     <Features/>  
     <hr>
     <Comments />
@@ -13,5 +14,14 @@
 
 
 <style scoped>
+
+h1{
+  margin-bottom: 1em;
+  position: relative;
+  top: 0;
+  color: #ddeeff;
+  background-color: #112233;
+  padding: .5em;
+}
 
 </style>
