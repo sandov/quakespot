@@ -95,8 +95,6 @@ const getFeatures = async() => {
 
     const mag_types = generateString(md.value, ml.value, ms.value, mw.value, me.value, mi.value, mb.value, mlg.value)
 
-    console.log(mag_types)
-
     const queryParams = new URLSearchParams({
         page: page.value,
         per_page: per_page.value,
