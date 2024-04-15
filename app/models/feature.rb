@@ -1,4 +1,6 @@
 class Feature < ApplicationRecord
+    has_many :comments
+
     validates_uniqueness_of :extern_id
 
     validates :title, presence: true
