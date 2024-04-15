@@ -2,7 +2,7 @@ class FeaturesController < ApplicationController
   def index
 
     page = params.fetch(:page, 1).to_i
-    per_page = params.fetch(:per_page, 10).to_i
+    per_page = params.fetch(:per_page, 20).to_i
     mag_type_string = params.fetch(:mag_type, "")
 
     offset = (page - 1) * per_page;

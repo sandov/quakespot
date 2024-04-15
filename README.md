@@ -26,7 +26,7 @@ Para acceder a la lista de features:
 
 `http://127.0.0.1:3000/api/features`
 
-Esto devuelve una página con 10 features, sin filtrar según tipo.
+Esto devuelve una página con 20 features, sin filtrar según tipo.
 
 Si queremos obtener página con 1000 features:
 
