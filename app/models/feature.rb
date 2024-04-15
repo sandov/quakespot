@@ -5,7 +5,8 @@ class Feature < ApplicationRecord
     validates :external_url, presence: true
     validates :place, presence: true
 
-    validates :mag_type, presence: true,  numericality: { greater_than: -1, less_than: 10 }
-    validates :coord_long, presence: true, numericality: { greater_than: -180, less_than: 180 }
-    validates :coord_lat, presence: true, numericality: { greater_than: -90, less_than: 90 }
+    validates :mag_type, presence: true
+    validates :magnitude, numericality: { greater_than_or_equal_to: -1, less_than_or_equal_to: 10 }
+    validates :coord_long, presence: true, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+    validates :coord_lat, presence: true, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }
 end
