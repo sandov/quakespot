@@ -10,7 +10,6 @@ class FeaturesController < ApplicationController
     unless mag_type_string.present?     # gets executed if mag_type_string is empty string
       records = Feature.limit(per_page).offset(offset)
       total = records.except(:offset, :limit, :order).count
-      records_formatted = format_for_view(records)
       records_formatted = format_for_view(records, page, per_page, total)
       render json: records_formatted
       return
@@ -68,8 +67,6 @@ class FeaturesController < ApplicationController
         "per_page" => per_page
       }
     }
-
-    #TODO: real pagination
 
     return parent_hash
 
