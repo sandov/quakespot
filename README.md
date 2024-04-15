@@ -1,5 +1,9 @@
 # Quakespot
 
+API y página web para ver datos de sismos y realizar comentarios. Postulación a Frogmi.
+
+## Instrucciones:
+
 `git clone https://github.com/sandov/quakespot`
 
 `cd quakespot`
